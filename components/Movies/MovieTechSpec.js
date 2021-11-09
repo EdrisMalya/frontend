@@ -11,19 +11,19 @@ export default function MovieTechSpec({qualities,code}) {
         <div>
             <div className={'flex space-x-2'}>
                 {qualities?.map((item,index)=>(
-                    <>
+                    <div key={index}>
                         <div onClick={e=>setActive(index)} className={`p-2 border rounded-lg text-gray-100 ${index===active?'bg-gray-100 text-black font-bold':''} cursor-pointer hover:scale-110 transition duration-150`} key={index}>
                             {item.quality} {" "} {item.type}
                         </div>
-                    </>
+                    </div>
                 ))}
             </div>
             <div className={'mt-7'}>
                 {qualities?.map((item,index)=>(
-                    <>
+                    <div key={index}>
                         {index===active&&(
                             <>
-                                <div className={'flex space-x-2 items-center'}>
+                                <div key={index} className={'flex space-x-2 items-center'}>
                                     <p className={'text-white font-bold text-lg'}>
                                         Size:
                                     </p>
@@ -43,7 +43,7 @@ export default function MovieTechSpec({qualities,code}) {
                                 </div>
                             </>
                         )}
-                    </>
+                    </div>
                 ))}
             </div>
         </div>

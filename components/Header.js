@@ -32,6 +32,13 @@ const Header = ({title='AEM'}) => {
         let width = document.querySelector('#search').getBoundingClientRect().width;
         setSearchWidth(width);
         window.addEventListener('resize', resize)
+        return ()=>{
+            setLoading(false)
+            setSearchResult({})
+            setActiveSearchResult(0)
+            setInputValue('')
+            setActiveSearchResultId('')
+        }
     },[]);
 
     const search = e => {
