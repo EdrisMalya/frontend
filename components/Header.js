@@ -1,4 +1,4 @@
-import {DocumentTextIcon, SearchIcon, TrendingUpIcon, VideoCameraIcon} from "@heroicons/react/outline";
+import {DocumentTextIcon, SearchIcon, TrendingUpIcon, VideoCameraIcon, XIcon} from "@heroicons/react/outline";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import Head from "next/head";
@@ -24,6 +24,13 @@ const Header = ({title='AEM'}) => {
         setAutoCompleteBoxLeftMargin(parseInt(String(margin).split('.')[0]));
         let width = document.querySelector('#search').getBoundingClientRect().width;
         setSearchWidth(width);
+    }
+    const clear = () =>{
+        setInputValue('')
+        setLoading(false)
+        setSearchResult({})
+        setActiveSearchResult(0)
+        setActiveSearchResultId('')
     }
 
     useEffect(()=>{
@@ -182,7 +189,11 @@ const Header = ({title='AEM'}) => {
                             <div className={'flex-grow'}>
                                 <input onKeyUp={search} className={'rounded-tl-lg outline-none text-white rounded-bl-lg w-full px-3 py-2 text-sm placeholder-gray-400 bg-[#333333]'} placeholder={'Search for a movie...'} type="text"/>
                             </div>
-                            <button className={'bg-[#4AA24A] text-white h-[38px] px-4 rounded'}>Search</button>
+                            {inputValue.length > 0 && (
+                                <button onClick={clear} className={'bg-[#4AA24A] text-white h-[38px] px-4 rounded'}>
+                                    <XIcon className={'h-4'} />
+                                </button>
+                            )}
                             {loading&&(
                                 <div className={'ml-3'}>
                                     <Loading />
@@ -193,19 +204,21 @@ const Header = ({title='AEM'}) => {
                         {searchResult.length > 0 &&(
                             <div className={'border mt-3'}>
                                 {searchResult.map((movie,index)=>(
-                                    <div onClick={e=>router.push('/movie/'+movie.id)} key={index} className={`flex items-center border-b p-2 space-x-2 cursor-pointer hover:bg-gray-700 ${activeSearchResult===index&&'bg-gray-700'}`}>
-                                        <div>
-                                            <img src={movie.small_cover_image} alt=""/>
+                                    <Link key={movie.id} href={`/movie/${movie.id}`}>
+                                        <div className={`flex items-center border-b p-2 space-x-2 cursor-pointer hover:bg-gray-700 ${activeSearchResult===index&&'bg-gray-700'}`}>
+                                            <div>
+                                                <img src={movie.small_cover_image} alt=""/>
+                                            </div>
+                                            <div>
+                                                <p className={'line-clamp-1 text-white text-xs font-semibold'}>
+                                                    {movie.title_long}
+                                                </p>
+                                                <p className={'mt-2 text-gray-400 text-sm'}>
+                                                    {movie.year}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className={'line-clamp-1 text-white text-xs font-semibold'}>
-                                                {movie.title_long}
-                                            </p>
-                                            <p className={'mt-2 text-gray-400 text-sm'}>
-                                                {movie.year}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    </Link>
                                 ))}
                             </div>
                         )}
