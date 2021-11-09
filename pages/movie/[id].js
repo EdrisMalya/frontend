@@ -192,12 +192,12 @@ const Movies = () => {
                                 </div>
                             </div>
                             <div>
-                                <a target={'_blank'} href={movie?.large_screenshot_image2}>
+                                <a target={'_blank'} href={movie?.large_screenshot_image2} rel="noreferrer">
                                     <img className={'shadow-lg rounded-lg hover:opacity-80 cursor-pointer transition duration-150 hover:scale-110 ease-in'} loading={'lazy'} src={movie?.medium_screenshot_image2} alt=""/>
                                 </a>
                             </div>
                             <div>
-                                <a target={'_blank'} href={movie?.large_screenshot_image3}>
+                                <a target={'_blank'} href={movie?.large_screenshot_image3} rel="noreferrer">
                                     <img className={'shadow-lg rounded-lg hover:opacity-80 cursor-pointer transition duration-150 hover:scale-110 ease-in'} loading={'lazy'} src={movie?.medium_screenshot_image3} alt=""/>
                                 </a>
                             </div>
