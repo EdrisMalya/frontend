@@ -17,7 +17,7 @@ const Browse_movies = () => {
             axios.get(`https://yts.mx/api/v2/list_movies.json?page=${page}&sort_by=year`).then(res=>{
                 setMovies(res.data.data.movies)
                 setLoading(false);
-            }).catch(error=>{
+            }).catch(() =>{
                 setLoading(false);
                 alert('Something went wrong')
             });
@@ -33,6 +33,8 @@ const Browse_movies = () => {
                 query: {
                     'page_number': page
                 }
+            }).then(() => {
+
             })
         }
         else{
@@ -42,7 +44,7 @@ const Browse_movies = () => {
         return ()=> {
             setLoading(true);
         }
-    },[router.isReady,query.page_number]);
+    },[router.isReady, query.page_number, router, pathname]);
     return (
         <div>
             <Header title={'Browse Movies'} />
@@ -92,5 +94,4 @@ const Browse_movies = () => {
         </div>
     );
 };
-
 export default Browse_movies;
