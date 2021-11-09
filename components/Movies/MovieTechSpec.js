@@ -36,7 +36,7 @@ export default function MovieTechSpec({qualities,code}) {
                                         Subtitle:
                                     </p>
                                     <p className={'text-white font-bold'}>
-                                        <a target={'_blank'} href={`https://yifysubtitles.org/movie-imdb/${code}`} className={'group flex hover:bg-gray-500 transition duration-150 items-center space-x-1 px-4 py-1 rounded-lg border'}>
+                                        <a target={'_blank'} href={`https://yifysubtitles.org/movie-imdb/${code}`} className={'group flex hover:bg-gray-500 transition duration-150 items-center space-x-1 px-4 py-1 rounded-lg border'} rel="noreferrer">
                                             <DownloadIcon className={'h-4 group-hover:text-black text-white'} />
                                         </a>
                                     </p>
