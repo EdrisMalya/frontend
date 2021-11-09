@@ -53,7 +53,7 @@ const Player = ({movie_id, index=0}) => {
                             {movie.title}
                         </ModalHeader>
                         <ModalBody>
-
+                            Loading...
                         </ModalBody>
                         <ModalFooter>
                             <Button
